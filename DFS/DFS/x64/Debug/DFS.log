@@ -1,0 +1,3 @@
+﻿  DFS.cpp
+D:\学习\速成蓝桥杯\DFS\DFS\DFS.cpp(57,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  DFS.vcxproj -> D:\学习\速成蓝桥杯\DFS\x64\Debug\DFS.exe
