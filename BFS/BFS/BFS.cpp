@@ -123,7 +123,34 @@ using namespace std;
 const int N = 1000;
 int g[N][N] = {};//存储地图
 typedef pair<int, int>PII;
-PII dxy[8];
+PII dxy[8];//马可以行走的方向向量
+int x, y;//开始的坐标
+int n, m;//地图的大小
+int dist[N][N] = {};//存储每个点到起点的距离
+queue<PII>q;//存储bfs的数据
+void bfs(int start_x, int start_y)
+{
+	memset(dist, -1, sizeof(dist));//把所有的无法到达的位置距离都设置为-1
+	dist[start_x][start_y] = 0;//自己到自己的位置只需要0步
+	q.push({ start_x,start_y });
+
+	while (!q.empty())
+	{
+		auto temp = q.front();//把头部给到
+		q.pop();
+		for (int i = 0; i < 8; i++)
+		{
+			int a = temp.first + dxy[i].first, b = temp.second + dxy[i].second;
+			if (a<1 || a>n || b<1 || b>m)
+			{
+				continue;
+			}
+			if (dist[a][b] >= 0)continue;
+			q.push({ a,b });
+			dist[a][b] = dist[temp.first][temp.second] + 1;
+		}
+	}
+}
 int main()
 {
 	dxy[0] = make_pair(1, 2);//向下1格向右两格
@@ -134,5 +161,16 @@ int main()
 	dxy[5] = make_pair(2, -1);//向下2格向左1格
 	dxy[6] = make_pair(-2, 1);//向上2格向右1格
 	dxy[7] = make_pair(-2, -1);//向上2格向左1格
+	cin >> n >> m;
+	cin >> x >> y;
+	bfs(x, y);
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 1; j <= m; j++)
+		{
+			cout << dist[i][j]<< ' ';
+		}
+		cout << endl;
+	}
 	return 0;
 }
