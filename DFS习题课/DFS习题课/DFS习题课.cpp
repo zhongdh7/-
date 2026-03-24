@@ -58,56 +58,55 @@ using namespace std;
 
 //P1088 [NOIP 2004 普及组] 火星人
 
-
-using namespace std;
-const int N = 10000 + 100;
-int hot[N] = {};//火星人手指的数目
-int n, m;
-int arr[N] = {};
-bool st[N] = {};
-int res = 0;
-void dfs(int x)
-{
-	if (res > m + 1)return;
-	if (x > n)
-	{
-		res++;
-
-		if (res == m + 1)
-		{
-			for (int i = 1; i <= n; i++)
-			{
-				cout << arr[i] << ' ';
-			}
-			return;
-		}
-	}
-
-	for (int i = 1; i <= n; i++)
-	{
-		if (!res)
-		{
-			i = hot[x];//对于如果当前没有输出一个res的情况下就需要把i调整到当前的字典序的位置
-			//只要第一次输出成功了之后的代码操作就不执行这一步了相当于第一次输出的位置就调整成为了火星人给出手指的位置 
-		}
-		if (!st[i])
-		{
-			st[i] = true;
-			arr[x] = i;
-			dfs(x + 1);
-			st[i] = false;
-			arr[x] = 0;
-		}
-	}
-}
-int main()
-{
-	cin >> n >> m;
-	for (int i = 1; i <= n; i++)
-	{
-		cin >> hot[i];
-	}
-	dfs(1);
-
-	return 0;
-}
+//using namespace std;
+//const int N = 10000 + 100;
+//int hot[N] = {};//火星人手指的数目
+//int n, m;
+//int arr[N] = {};
+//bool st[N] = {};
+//int res = 0;
+//void dfs(int x)
+//{
+//	if (res > m + 1)return;
+//	if (x > n)
+//	{
+//		res++;
+//
+//		if (res == m + 1)
+//		{
+//			for (int i = 1; i <= n; i++)
+//			{
+//				cout << arr[i] << ' ';
+//			}
+//			return;
+//		}
+//	}
+//
+//	for (int i = 1; i <= n; i++)
+//	{
+//		if (!res)
+//		{
+//			i = hot[x];//对于如果当前没有输出一个res的情况下就需要把i调整到当前的字典序的位置
+//			//只要第一次输出成功了之后的代码操作就不执行这一步了相当于第一次输出的位置就调整成为了火星人给出手指的位置 
+//		}
+//		if (!st[i])
+//		{
+//			st[i] = true;
+//			arr[x] = i;
+//			dfs(x + 1);
+//			st[i] = false;
+//			arr[x] = 0;
+//		}
+//	}
+//}
+//int main()
+//{
+//	cin >> n >> m;
+//	for (int i = 1; i <= n; i++)
+//	{
+//		cin >> hot[i];
+//	}
+//	dfs(1);
+//
+//	return 0;
+//}
