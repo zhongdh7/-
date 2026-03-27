@@ -113,59 +113,113 @@ using namespace std;
 
 //P1149 [NOIP 2008 提高组] 火柴棒等式
 
-const int N = 10010;
-int n;
-int arr[10];
-int res = 0;
-int nums[N] = { 6,2,5,5,4,5,6,3,7,6 };//一次是0,1,2,3...,9的火柴数量 
-//计算火彩棍数量 
-int col(int x)
-{
-	int temp = x;
-	if (nums[x])return nums[x];
-	else
-	{
-		int sumFire = 0;
+//const int N = 10010;
+//int n;
+//int arr[10];
+//int res = 0;
+//int nums[N] = { 6,2,5,5,4,5,6,3,7,6 };//一次是0,1,2,3...,9的火柴数量 
+////计算火彩棍数量 
+//int col(int x)
+//{
+//	int temp = x;
+//	if (nums[x])return nums[x];
+//	else
+//	{
+//		int sumFire = 0;
+//
+//		while (x)
+//		{
+//			sumFire += nums[x % 10];
+//			x /= 10;
+//		}
+//		nums[temp] = sumFire;
+//		return sumFire;
+//	}
+//}
+//void dfs(int x, int sum)
+//{
+//	if (sum > n - 4)return;
+//	if (x == 2)
+//	{
+//		if (sum + 4 > n - 4)return;
+//	}
+//	if (x == 3)
+//	{
+//		if (sum + 2 > n - 4)return;
+//	}
+//	if (x > 3)
+//	{
+//		if (arr[1] + arr[2] == arr[3] && sum == n - 4)
+//		{
+//			res++;
+//		}
+//		return;
+//	}
+//	for (int i = 0; i <= 10000; i++)
+//	{
+//		arr[x] = i;
+//		dfs(x + 1, sum + col(i));
+//		arr[x] = 0;
+//	}
+//}
+//int main()
+//{
+//	cin >> n;
+//	dfs(1, 0);
+//	cout << res << endl;
+//	return 0;
+//}
 
-		while (x)
-		{
-			sumFire += nums[x % 10];
-			x /= 10;
-		}
-		nums[temp] = sumFire;
-		return sumFire;
-	}
-}
-void dfs(int x, int sum)
+//P2036 [COCI 2008/2009 #2] PERKET
+
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+using namespace std;
+
+const int N = 20;
+int n;
+int acid[N];
+int bitter[N];
+int st[N];
+int res = 1e9;
+bool has = false;
+void dfs(int x)
 {
-	if (sum > n - 4)return;
-	if (x == 2)
+	if (x > n)
 	{
-		if (sum + 4 > n - 4)return;
-	}
-	if (x == 3)
-	{
-		if (sum + 2 > n - 4)return;
-	}
-	if (x > 3)
-	{
-		if (arr[1] + arr[2] == arr[3] && sum == n - 4)
+		int sum1 = 1;//存储酸度 
+		int sum2 = 0;
+		for (int i = 1; i <= n; i++)
 		{
-			res++;
+			if (st[i] == 1)
+			{
+				has = true;
+				sum1 *= acid[i];
+				sum2 += bitter[i];
+			}
 		}
+		if (has)res = min(res, abs(sum1 - sum2));
+		has = false;
 		return;
 	}
-	for (int i = 0; i <= 10000; i++)
-	{
-		arr[x] = i;
-		dfs(x + 1, sum + col(i));
-		arr[x] = 0;
-	}
+	st[x] = 1;
+	dfs(x + 1);
+	st[x] = 0;
+
+	st[x] = 2;
+	dfs(x + 1);
+	st[x] = 0;
 }
+
 int main()
 {
 	cin >> n;
-	dfs(1, 0);
+	for (int i = 1; i <= n; i++)
+	{
+		cin >> acid[i] >> bitter[i];
+	}
+	dfs(1);
 	cout << res << endl;
 	return 0;
 }
