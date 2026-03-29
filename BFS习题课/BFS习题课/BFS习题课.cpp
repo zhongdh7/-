@@ -72,21 +72,61 @@ using namespace std;
 
 //P1644 跳马问题
 
+//#include<iostream>
+//#include<queue>
+//#include<utility>
+//using namespace std;
+//typedef pair<int, int>PII;
+//const int N = 30;
+//int g[N][N] = {};
+//int dx[4] = { 1,2,1,2 };
+//int dy[4] = { 2,1,-2,-1 };
+//int n, m;
+//queue<PII>q;
+//void bfs(int x1, int y1)
+//{
+//	g[x1][y1]++;
+//	q.push({ x1,y1 });
+//	while (q.size())
+//	{
+//		auto temp = q.front();
+//		q.pop();
+//		for (int i = 0; i < 4; i++)
+//		{
+//			int a = temp.first + dx[i], b = temp.second + dy[i];
+//			if (b<0 || b>n || a > m)continue;
+//			g[a][b]++;
+//			q.push({ a,b });
+//		}
+//	}
+//}
+//int main()
+//{
+//	cin >> n >> m;
+//	bfs(0, 0);
+//	cout << g[m][n] << endl;
+//	return 0;
+//}
+
+//P1332 血色先锋队
+
 #include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
 #include<queue>
 #include<utility>
 using namespace std;
-typedef pair<int, int>PII;
-const int N = 30;
+typedef pair<int, int> PII;
+const int N = 1e3;
 int g[N][N] = {};
-int dx[4] = { 1,2,1,2 };
-int dy[4] = { 2,1,-2,-1 };
-int n, m;
-queue<PII>q;
-void bfs(int x1, int y1)
+int dx[] = { 1,-1,0,0 };
+int dy[] = { 0,0,-1,1 };
+queue<PII>q;//源头
+//vector<PII>q_l;//领主 
+int n, m, a, b;
+int bfs(int x, int y)
 {
-	g[x1][y1]++;
-	q.push({ x1,y1 });
 	while (q.size())
 	{
 		auto temp = q.front();
@@ -94,16 +134,32 @@ void bfs(int x1, int y1)
 		for (int i = 0; i < 4; i++)
 		{
 			int a = temp.first + dx[i], b = temp.second + dy[i];
-			if (b<0 || b>n || a > m)continue;
-			g[a][b]++;
-			q.push({ a,b });
+			if (a > n || b > m || a < 0 || b < 0)continue;
+			if (g[a][b] >= 0)continue;
+			g[a][b] = g[temp.first][temp.second] + 1;
+			q.push(make_pair(a, b));
 		}
 	}
+	return g[x][y];
+
 }
 int main()
 {
-	cin >> n >> m;
-	bfs(0, 0);
-	cout << g[m][n] << endl;
+	memset(g, -1, sizeof(g));
+	cin >> n >> m >> a >> b;
+	for (int i = 1; i <= a; i++)
+	{
+		int x, y;
+		cin >> x >> y;
+		q.push({ x,y });
+		g[x][y] = 0;
+	}
+	for (int i = 1; i <= b; i++)
+	{
+		int x, y;
+		cin >> x >> y;
+		int res = bfs(x, y);
+		cout << res << endl;
+	}
 	return 0;
 }
