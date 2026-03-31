@@ -1,7 +1,11 @@
-﻿#include<iostream>
+﻿#define  _CRT_SECURE_NO_WARNINGS
+#include<iostream>
 #include<cstdio>
 #include<algorithm>
 using namespace std;
+
+//A-B数对
+
 
 //const int N = 200010;
 //
@@ -9,8 +13,6 @@ using namespace std;
 //int q[N];
 //typedef long long ll;
 //ll cnt = 0;
-//
-////A-B数对
 //int binary_search1(int key)//这个用于寻找第一个A的位置
 //{
 //	int l = 0, r = n + 1;
@@ -125,48 +127,109 @@ using namespace std;
 
 //P2440 木材加工
 
+//using namespace std;
+//const int N = 1e5 + 100;
+//int tree[N];
+//int n, k;
+//bool is_blue(int length)
+//{
+//	long long total = 0;
+//	for (int i = 1; i <= n; i++)
+//	{
+//		total += (tree[i] / length);
+//	}
+//	return total < k;
+//}
+//int binary_search()
+//{
+//	int l = 0;
+//	int r = tree[n] + 1;
+//	int mid = (l + r) / 2;
+//	while (l + 1 != r)
+//	{
+//		if (is_blue(mid))
+//		{
+//			r = mid;
+//			mid = (r + l) / 2;
+//		}
+//		else
+//		{
+//			l = mid;
+//			mid = (r + l) / 2;
+//		}
+//	}
+//	return l;
+//}
+//int main()
+//{
+//	scanf("%d%d", &n, &k);
+//	for (int i = 1; i <= n; i++)
+//	{
+//		scanf("%d", tree + i);
+//	}
+//	sort(tree + 1, tree + n + 1);
+//	int res = binary_search();
+//	cout << res << endl;
+//	return 0;
+//}
+
+//P2678 [NOIP 2015 提高组] 跳石头
+
+#include<iostream>
+#include<cstdio>
+#include<algorithm>
+#include<cstring>
 using namespace std;
-const int N = 1e5 + 100;
-int tree[N];
-int n, k;
-bool is_blue(int length)
+const int N = 1e5;
+int L, n, m;
+int stone[N];
+int res = 0;
+bool check(long long x)
 {
-	long long total = 0;
-	for (int i = 1; i <= n; i++)
+	int i = 0, now = 0;
+	long long cnt = 0;
+	while (i <= n)
 	{
-		total += (tree[i] / length);
-	}
-	return total < k;
-}
-int binary_search()
-{
-	int l = 0;
-	int r = tree[n] + 1;
-	int mid = (l + r) / 2;
-	while (l + 1 != r)
-	{
-		if (is_blue(mid))
+		i++;
+		while (stone[i] - stone[now] < x)
 		{
-			r = mid;
-			mid = (r + l) / 2;
+			cnt++;
+			if (i <= n)
+			{
+				i++;
+			}
+			else
+			{
+				return cnt <= m;
+			}
 		}
-		else
-		{
-			l = mid;
-			mid = (r + l) / 2;
-		}
+		now = i;
 	}
-	return l;
+	return cnt <= m;
 }
 int main()
 {
-	scanf("%d%d", &n, &k);
+	cin >> L >> n >> m;
 	for (int i = 1; i <= n; i++)
 	{
-		scanf("%d", tree + i);
+		scanf("%d", stone + i);
 	}
-	sort(tree + 1, tree + n + 1);
-	int res = binary_search();
-	cout << res << endl;
+	stone[n + 1] = L;
+	stone[0] = 0;
+	int l = 0, r = L + 1;
+
+	while (l + 1 != r)
+	{
+		long long mid = (l + r) / 2;
+		if (check(mid))
+		{
+			l = mid;
+		}
+		else
+		{
+			r = mid;
+		}
+	}
+	cout << l << endl;
 	return 0;
 }

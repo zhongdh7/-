@@ -14,11 +14,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
@@ -34,9 +38,9 @@
               "Title": "\u4E8C\u5206\u67E5\u627E\u4E60\u9898.cpp",
               "DocumentMoniker": "D:\\\u5B66\u4E60\\\u901F\u6210\u84DD\u6865\u676F\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898.cpp",
               "RelativeDocumentMoniker": "\u4E8C\u5206\u67E5\u627E\u4E60\u9898\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898.cpp",
-              "ToolTip": "D:\\\u5B66\u4E60\\\u901F\u6210\u84DD\u6865\u676F\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898.cpp",
-              "RelativeToolTip": "\u4E8C\u5206\u67E5\u627E\u4E60\u9898\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898.cpp",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAgwGoAAAAVAAAAAAAAAA==",
+              "ToolTip": "D:\\\u5B66\u4E60\\\u901F\u6210\u84DD\u6865\u676F\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898.cpp*",
+              "RelativeToolTip": "\u4E8C\u5206\u67E5\u627E\u4E60\u9898\\\u4E8C\u5206\u67E5\u627E\u4E60\u9898.cpp*",
+              "ViewState": "AgIAALIAAAAAAAAAAAAWwLwAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-03-29T08:48:59.803Z",
               "EditorCaption": ""
